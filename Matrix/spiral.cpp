@@ -4,6 +4,7 @@ Given a matrix of size r*c. Traverse the matrix in spiral form.
 
 #include <bits/stdc++.h>
 using namespace std;
+
 void print(vector<int> const &a);
 int spiralOrder(int A[10][10], int r, int c)
 {
