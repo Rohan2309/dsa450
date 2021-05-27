@@ -64,13 +64,35 @@ void display(node *head) //head by value because wea re not mod ll
     }
     cout << endl;
 }
+
+node *removeDuplicate(node *&head)
+{
+    node *temp = head;
+    if (!temp)
+        return NULL;           //when there is no value
+    while (temp->next != NULL) //to traverse
+    {
+        if (temp->data == temp->next->data)
+        {
+            temp->next = temp->next->next;
+        }
+        else
+        {
+            temp = temp->next; //when there is different data
+        }
+    }
+    return head;
+}
+
 int main()
 {
     node *head = NULL;
-    insertAtTail(head, 2);
-    insertAtTail(head, 2);
-    insertAtTail(head, 4);
     insertAtTail(head, 5);
+    insertAtTail(head, 2);
+    insertAtTail(head, 2);
+    insertAtTail(head, 2);
+    display(head);
+    removeDuplicate(head);
     display(head);
     return 0;
 }

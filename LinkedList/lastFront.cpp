@@ -1,7 +1,9 @@
 /*
-Reverse a linked list
+Move last element to front of a given Linked List
 
-*ITERATIVE WAY*
+Write a function that moves the last element to the front in a given Singly Linked List.
+For example, if the given Linked List is 1->2->3->4->5, then the function should change the
+list to 5->1->2->3->4.
 */
 
 #include <bits/stdc++.h>
@@ -47,32 +49,34 @@ void display(node *head) //head by value because wea re not mod ll
     cout << endl;
 }
 
-//iterative way
-node *reverse(node *&head) //returning new head of reversed LL
+node *lastFront(node *&head)
 {
-    node *prevptr = NULL;
-    node *currentptr = head;
-    node *nextptr;
-    while (currentptr != NULL)
+    if (head == NULL or head->next == NULL)
     {
-        nextptr = currentptr->next; //already next pointer is increaing at the start of loop
-        currentptr->next = prevptr;
-
-        prevptr = currentptr;
-        currentptr = nextptr;
+        cout << "Empty LinkedList";
     }
-    return prevptr; //new head
+    node *prev = NULL;
+    node *temp = head;
+    while (temp->next != NULL)
+    {
+        prev = temp;
+        temp = temp->next;
+    }
+    prev->next = NULL;
+    temp->next = head;
+    head = temp;
+    return head;
 }
 
 int main()
 {
     node *head = NULL;
-    insertAtTail(head, 1);
     insertAtTail(head, 2);
-    insertAtTail(head, 3);
-    insertAtTail(head, 4);
     insertAtTail(head, 5);
-    node *newHead = reverse(head);
+    insertAtTail(head, 4);
+    insertAtTail(head, 2);
+    display(head);
+    node *newHead = lastFront(head);
     display(newHead);
 
     return 0;
