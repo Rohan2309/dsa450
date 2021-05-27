@@ -1,5 +1,5 @@
 /*
-
+Reverse k nodes in a LL
 
 
 */
@@ -19,13 +19,6 @@ public:
         next = NULL;
     }
 };
-
-void insertAtHead(node *&head, int val)
-{
-    node *n = new node(val);
-    n->next = head;
-    head = n;
-}
 
 void insertAtTail(node *&head, int val) //head by ref and not by val because we have to mod ll
 {
@@ -54,18 +47,29 @@ void display(node *head) //head by value because wea re not mod ll
     cout << endl;
 }
 
-bool search(node *head, int key)
+node *reversek(node *&head, int k)
 {
-    node *temp = head;
-    while (temp != NULL)
+    node *prevptr = NULL;
+    node *currptr = head;
+    node *nextptr;
+    int count = 0; //to know first k nodes upto where
+    while (currptr != NULL and count < k)
     {
-        if (temp->data == key)
-        {
-            return true;
-        }
-        temp = temp->next;
+        nextptr = currptr->next;
+        currptr->next = prevptr;
+
+        prevptr = currptr;
+        currptr = nextptr;
+        count++;
     }
-    return false;
+    //reversed upto k nodes
+    //prevptr will be pointing to last node
+    //next will be pointed by nextptr
+    if (nextptr != NULL)
+    {
+        head->next = reversek(nextptr, k);
+    }
+    return prevptr;
 }
 
 int main()
@@ -74,11 +78,11 @@ int main()
     insertAtTail(head, 1);
     insertAtTail(head, 2);
     insertAtTail(head, 3);
-    display(head);
-    insertAtHead(head, 4);
-    display(head);
-    cout << search(head, 3) << endl;
-    cout << search(head, 5) << endl;
-
+    insertAtTail(head, 4);
+    insertAtTail(head, 5);
+    insertAtTail(head, 6);
+    int k = 2;
+    node *newhead = reversek(head, k);
+    display(newhead);
     return 0;
 }
