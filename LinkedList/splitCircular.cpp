@@ -73,7 +73,26 @@ void display(node *head) //head by value because we are not mod ll
 
     cout << endl;
 }
-
+void splitList(node *head, node **head1_ref, node **head2_ref)
+{
+    // your code goes here
+    node *slow = head;
+    node *fast = head->next;
+    while (fast != head && fast->next != head)
+    { //for circular condition
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    *head1_ref = head;       //start of first half
+    *head2_ref = slow->next; //start of second half
+    slow->next = *head1_ref; //making circular
+    node *temp = *head2_ref; //iterator
+    while (temp->next != head)
+    { //going to end
+        temp = temp->next;
+    }
+    temp->next = *head2_ref; //making circular
+}
 int main()
 {
     node *head = NULL;
