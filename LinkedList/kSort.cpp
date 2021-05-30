@@ -13,6 +13,8 @@ if we find it is smaller then insert
 
 
 * We are doing on O(nlogk) approach -> code below*
+
+mean heap gives lowest value max heap gives highest value
 */
 
 #include <bits/stdc++.h>
@@ -76,7 +78,7 @@ struct compare //{changing to min heap}
 {
     bool operator()(node *first, node *second)
     {
-        return first->data > second->data;
+        return first->data > second->data; // gives  ascending
     }
 };
 node *kSort(node *&head, int k)
