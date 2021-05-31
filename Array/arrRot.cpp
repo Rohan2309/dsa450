@@ -7,13 +7,13 @@ using namespace std;
 
 void rotate(int arr[], int n)
 {
-    int x = arr[n - 1];
+    int x = arr[n - 1]; //last element
     int i;
-    for (i = arr[n - 1]; i > 0; i--)
+    for (i = arr[n - 1]; i > 0; i--) //from back till first pos
     {
         arr[i] = arr[i - 1];
     }
-    arr[0] = x;
+    arr[0] = x; //last element at first
 }
 
 int main()

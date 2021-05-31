@@ -4,6 +4,16 @@ Find the Kth max and min element of an array
 #include <bits/stdc++.h>
 using namespace std;
 
+int kSort(int arr[10], int k, int n)
+{
+
+    sort(arr, arr + n);
+
+    cout << "kth smallest element is: " << arr[k - 1] << endl;
+    sort(arr, arr + n, greater<int>());
+    cout << "kth largest element is: " << arr[k - 1] << endl;
+}
+
 int main()
 {
     int n, arr[10];
@@ -14,12 +24,9 @@ int main()
         cout << "enter value of element " << i + 1 << endl;
         cin >> arr[i];
     }
-    sort(arr, arr + n);
     int k;
     cout << "enter value of k" << endl;
     cin >> k;
-    cout << "kth smallest element is: " << arr[k - 1] << endl;
-    sort(arr, arr + n, greater<int>());
-    cout << "kth largest element is: " << arr[k - 1] << endl;
+    cout << kSort(arr, k, n) << endl;
     return 0;
 }
