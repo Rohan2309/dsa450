@@ -1,0 +1,202 @@
+/*
+
+*BITWISE OPERATORS*
+& and operator -> 0101
+                  0110
+                  0100
+
+| or operator -> 0101
+                 0110
+                 0111
+
+~gives ones compliment = 0101 -> 1010
+
+^ xor operator -> 0101
+                  0110
+                  0011
+
+left shift 
+4<<1 //left shift by 1 (a=4 and 1 = n)
+0100 = 1000 which is 8
+
+right shift 
+4>>1 //right shift by 1 (a=4 and 1 = n)
+0100 = 0010 which is 2
+
+a<<n -> a*2^n
+a>>n -> a/2^n
+
+*NUMBER SYSTEM*
+Decimal Number System
+
+no is 1234
+base is 10
+
+1000     100     10     1
+   1       2      3     4
+10^3     10^2  10^1  10^0
+
+
+1234 = 1*10^3 + 2*10^2 + 3*10^1 + 4*10^0
+
+
+Binary Number System (0 and 1)
+
+no is 45
+base is 2
+
+ 32    16     8       4      2     1 (2's powers)
+ 1    0      1       1      0     1
+ 2^5   2^4    2^3     2^2  2^1    2^0
+
+
+45 = 1*32 + 0*16 + 1*8 + 1*4 + 0*2 + 1*1
+45 = 1*2^5 + 0*2^4 + 1*2^3 + 1*2^2 + 0*2^1 + 1*2^0
+
+
+*DECIMAL TO BINARY*
+
+N          Quotient(N/10)         Remainder(N%10)
+1234          123                     4         (Q will be new N in next step)
+123           12                      3
+12            1                       2
+1             0                       1         (stop when Q is 0)
+
+
+
+n0 is 45
+
+ N          Quotient(N/12)         Remainder(N%2)
+45            22                      1         (Q will be new N in next step)
+22            11                      0
+11            5                       1
+5             2                       1         
+2             1                       0   
+1             0                       1   (stop when Q is 0)
+
+ in rev order R -> 101101
+
+(101101)base 2
+
+
+ *BINARY TO DECIMAL*
+
+no is 101101
+
+
+ 1    0      1       1      0     1
+ 2^5   2^4    2^3     2^2  2^1    2^0
+
+
+1*2^5 + 0*2^4 + 1*2^3 + 1*2^2 + 0*2^1 + 1*2^0
+
+32+8+4+1
+
+45
+
+(45)base 10
+
+
+
+ in rev order R -> 101101
+
+
+ *BIT MANIPULATION*
+
+*Get Bit*
+
+ n = 0101 = 5
+
+
+ 0   1    0    1    -> n
+ 3   2    1    0    -> position
+
+ get bit at pos i = 2
+ 1 << i   = 0100   (we got 1 in pos i)
+ n & 0100 = 0100   (in original if there is 1 it will give 1 otherwise 0)
+
+ if(n & (1 << i))!=0, then bit = 1
+
+
+
+int getBit(int n, int pos){
+     return (n & (1 << pos)) ! =0;
+} 
+
+
+
+*Set Bit* (set means we have to put 1 at pos i)
+unset means we have to put 0 at pos i
+
+
+ n = 0101 = 5
+
+
+ 0   1    0    1    -> n
+ 3   2    1    0    -> position
+
+ set bit at pos i = 1
+ 1 << i   = 0100   (we got 1 in pos i)
+ n | 0100 = 0111   (in original if there is 0 then alse it will give 1) == ans is 7
+
+ if(n | (1 << i)), then bit = 1
+
+
+
+int setBit(int n, int pos){
+     return (n | (1 << pos));
+} 
+
+
+
+*Clear Bit* (clear means we have to put 0 at pos i)
+
+ n = 0101 = 5
+
+
+ 0   1    0    1    -> n
+ 3   2    1    0    -> position
+
+ get bit at pos i = 2
+ 1 << i   = 0100   (we got 1 in pos i)
+ ~0100 = 1011   (taking ones complement and getting 0 in pos i and 1 in rest)
+ n & 1011 = 0001 (in original no if there is 1 or 0 the resultant will have 0) 
+
+
+int getBit(int n, int pos){
+    int mask = ~(1<<pos);
+     return (n & mask) ;
+} 
+
+
+
+*Update Bit* (clear means we have to update at pos i) value 0 or 1 will be given
+
+ n = 0101 = 5
+
+
+ 0   1    0    1    -> n
+ 3   2    1    0    -> position
+
+ get bit at pos i = 1
+ and value is 1
+
+clear bit process at first
+ 1 << i   = 0011   (we got 1 in pos i)
+ ~0010 = 1101  (taking ones complement and getting 0 in pos i and 1 in rest)
+ n & 1101 = 0101(in original no if there is 1 or 0 the resultant will have 0) //pos 1 is cleared i.e set to 0
+
+now n = 0101
+
+ set bit process at pos i i.e 1
+ 1<<i = 0010 (we got 1 in pos i)
+ n|0010 = 0111  (in original if there is 0 then alse it will give 1)  which is 7
+
+
+int updateBit(int n, int pos, int value){
+    int mask = ~(1<<pos); //step from clear bit
+    n = n & mask; //clear bit at pos
+    return (n | (value << pos)); //from setBit (value can be 0 and 1)
+} 
+
+*/
