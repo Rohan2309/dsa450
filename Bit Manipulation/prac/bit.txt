@@ -15,6 +15,9 @@
                   0110
                   0011
 
+ x^x = 0
+ y^0 = y
+
 left shift 
 4<<1 //left shift by 1 (a=4 and 1 = n)
 0100 = 1000 which is 8
