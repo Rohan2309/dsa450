@@ -44,7 +44,7 @@ bool solve(int a[], int size, int n)
     sort(a, a + size); //sorting array
     int f = -1;        //flag
     for (int i = 0; i < size; i++)
-    {
+    {                                                                 //upper bound is binary search only (1st contraint stary, second constraint end and third is val to find)
         int idx = upper_bound(a + i + 1, a + size, n + a[i]) - a - 1; //upper bound is binary search which gives last idx of value
         //-a for geeting idx //-1 as we using upper bound we get the later index
         if (a[idx] - a[i] == n) //final check
