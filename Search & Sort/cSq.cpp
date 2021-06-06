@@ -34,13 +34,38 @@ which takes an Integer N as input and returns the answer.
 
 Expected Time Complexity: O(sqrt(N))
 Expected Auxiliary Space: O(1)
+
+
+if number is 9 = n
+sqrt of 9 is 3 = a
+if 3 x 3 == 9 then 3-1 is the number of perfect squares (2 is ans)
+if a x a != N then a is ans 
+
+as 20 is n
+sqrt of 20 is 4.something
+so ans is 4
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
+int countS(int n)
+{
+    int a = sqrt(n);
+    if (a * a == n)
+    {
+        return a - 1;
+    }
+    else
+    {
+        return a;
+    }
+}
+
 int main()
 {
-
+    int n = 9, N = 20;
+    cout << countS(n) << endl;
+    cout << countS(N) << endl;
     return 0;
 }
