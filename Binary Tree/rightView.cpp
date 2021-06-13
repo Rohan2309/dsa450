@@ -1,4 +1,3 @@
-
 /*
 Right View of Binary Tree 
 Given a Binary Tree, find Right view of it. Right view of a Binary Tree is set of nodes visible when tree is viewed from right side.
@@ -30,10 +29,6 @@ Input:
 40  60 
 Output: 10 30 60
 */
-/*
-
-*/
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -50,41 +45,48 @@ struct Node
     }
 };
 
+void inorder(struct Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+
 class Solution
 {
 public:
-    vector<int> topView(Node *root)
+    vector<int> rightView(Node *root)
     {
-        //Your code here
+        // Your code here
         vector<int> ans;
-        map<int, int> m;            //height and value {-2,-1,0,1,2}
-        queue<pair<Node *, int>> q; //node and height
+        queue<Node *> q; //queue of type node
         if (!root)
-        {
+        { //base case
             return ans;
         }
-        q.push({root, 0}); //root with height 0
+        q.push(root); //pushing root
         while (!q.empty())
         {
-            Node *t = q.front().first; //getting node val
-            int h = q.front().second;  //getting height
-            q.pop();
-            if (!m[h])
-            {                   //first time visiting
-                m[h] = t->data; //pushing node value
-            }
-            if (t->left)
-            { //if left exists
-                q.push({t->left, h - 1});
-            }
-            if (t->right)
+            int l = q.size(); //get nodes in current level
+            Node *t;
+            while (l--)
             {
-                q.push({t->right, h + 1});
+                t = q.front(); //take out first node from q in t
+                q.pop();
+                if (t->left)
+                { //if left present push in q
+                    q.push(t->left);
+                }
+                if (t->right)
+                {
+                    q.push(t->right);
+                }
             }
-        }
-        for (auto x : m)
-        {
-            ans.push_back(x.second); //will be pushed to ans vector in sorted order(according to key)
+            ans.push_back(t->data); //pushing last element in ans vec
         }
         return ans;
     }
@@ -100,12 +102,12 @@ int main()
     root->left = new Node(20);        //root left will point towards a new node 2
     root->right = new Node(30);
     root->left->left = new Node(40);
-    root->left->right = new Node(50);
-    root->right->left = new Node(60);
-    root->right->right = new Node(70);
+    root->left->right = new Node(60);
+    // root->right->left = new Node(6);
+    // root->right->right = new Node(7);
 
     Solution ob;
-    vector<int> vec = ob.topView(root);
+    vector<int> vec = ob.rightView(root);
     for (int x : vec)
     {
         cout << x << " ";
