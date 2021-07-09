@@ -41,7 +41,7 @@ public:
         {
             return 0;
         }
-        if (dp[n][m] != -1) //memoisation
+        if (dp[m][n] != -1) //memoisation
         {                   //if something is already stored in dp and it occurs again return that
             return dp[m][n];
         }
