@@ -4,7 +4,7 @@
 3. Sliding Window + Two Pointer Technique
 4. Modular Arithmetic
 5. Binary and Modular Exponentiation
-6. Euclid GCD
-7. Extended Euclid's Theorem
+6. Euclid GCD                                -> done
+7. Extended Euclid's Theorem                 -> done
 8. Pigeonhole Principle
-9. Prime sieve
+9. Prime sieve                               -> done
