@@ -3,8 +3,8 @@
 2. Scaline Algorithm
 3. Sliding Window + Two Pointer Technique
 4. Modular Arithmetic
-5. Binary and Modular Exponentiation
+5. Binary and Modular Exponentiation         -> done
 6. Euclid GCD                                -> done
 7. Extended Euclid's Theorem                 -> done
-8. Pigeonhole Principle
+8. Pigeonhole Principle                      -> done
 9. Prime sieve                               -> done
