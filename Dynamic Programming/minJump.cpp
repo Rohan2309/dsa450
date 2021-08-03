@@ -23,9 +23,41 @@ using namespace std;
 class Solution
 {
 public:
-    int minJumps(int arr[], int n)
+    int minJumps(int a[], int n)
     {
         // Your code here
+        int maxR = a[0]; //max reachable point
+        int step = a[0];
+        int jump = 1; //minimum 1 jump
+        if (n == 1)   //base case
+        {
+            return 0;
+        }
+        else if (a[0] == 0) //can't jump
+        {
+            return -1;
+        }
+        else
+        {
+            for (int i = 1; i < n; i++) //as for 0 we have already defined above
+            {
+                if (i == n - 1) //i reached last point
+                {
+                    return jump;
+                }
+                maxR = max(maxR, i + a[i]);
+                step--;        //step was 1 it is now 0
+                if (step == 0) //when 0 we jump
+                {
+                    jump++;
+                    if (i >= maxR)
+                    {
+                        return -1;
+                    }
+                    step = maxR - i;
+                }
+            }
+        }
     }
 };
 
