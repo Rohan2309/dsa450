@@ -88,7 +88,25 @@ public:
     int celebrity(vector<vector<int>> &M, int n)
     {
         // code here
+        int c = 0; //celebrity (we assume person 0 is c)
+        for (int i = 0; i < n; i++)
+        {
+            if (M[c][i] == 1) //0 knows 1, so 0 can't be c, new c is 1.
+            {
+
+                c = i;
+            }
         }
+        //got c (maybe) let's make sure
+        for (int i = 0; i < n; i++)
+        {                                                  //false case
+            if (i != c and (M[c][i] == 1 or M[i][c] == 0)) //i!=c as we are not going to check c with c
+            {
+                return -1;
+            }
+        }
+        return c;
+    }
 };
 int main()
 {
