@@ -35,7 +35,15 @@ public:
     //when we are need are given value of row and col, we have to say value then formula r-1 C c-1
     //for 5c2 = 5x4/2x1
     //for 7c3 = 7x6x5/3x2x1
+    //(no of terms in dow = num of terms in up, as 3x2x1 so 7x6x5)
     //nth row print , pascal
+    //for a row it will be (i+1) C n (where n will be increased)
+    /*
+for(int i=0; i<k; ++i){
+    res*=(n-1);
+    res/=(i+1);
+}
+    */
     vector<vector<int>> generate(int n) {
         if(n==0){//base case
             return {};
