@@ -15,6 +15,7 @@ int helper(vector<int>&v, int mid){
             l=md+1;
         }
         else{
+            
             h=md-1;
         }
     }
