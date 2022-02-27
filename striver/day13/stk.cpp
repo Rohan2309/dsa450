@@ -1,5 +1,5 @@
 /*
-Implementation of stack
+Implementation of stack using array
 LIFO
 push - insert
 pop - remove top element
