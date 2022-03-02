@@ -21,7 +21,7 @@ Notes:
 
 You must use only standard operations of a queue, which means that only push to back, peek/pop from front, size and is empty operations are valid.
 Depending on your language, the queue may not be supported natively. You may simulate a queue using a list or deque (double-ended queue) as long as you use only a queue's standard operations.
- 
+
 
 Example 1:
 
@@ -43,75 +43,88 @@ myStack.empty(); // return False
 #include <bits/stdc++.h>
 using namespace std;
 
-class MyStack {//single queue
-    queue<int>q;
+class MyStack
+{ // single queue
+    queue<int> q;
+
 public:
-    MyStack() {
-        
+    MyStack()
+    {
     }
-    
-    void push(int x) {
-        q.push(x);//inserting in q
+
+    void push(int x)
+    {
+        q.push(x); // inserting in q
         int n;
-        n=q.size();
-       for(int i=0; i<n-1;++i){//reinsert all elements below that in q
-            int x =q.front();
-           
+        n = q.size();
+        for (int i = 0; i < n - 1; ++i)
+        { // reinsert all elements below that in q
+            int x = q.front();
+
             q.pop();
-           q.push(x);
+            q.push(x);
         }
     }
-    
-    int pop() {
-        int ans=q.front();
+
+    int pop()
+    {
+        int ans = q.front();
         q.pop();
         return ans;
     }
-    
-    int top() {
+
+    int top()
+    {
         return q.front();
     }
-    
-    bool empty() {
+
+    bool empty()
+    {
         return q.empty();
     }
 };
 
+class MyStack
+{ // 2 queues
+    queue<int> q1;
+    queue<int> q2;
 
-class MyStack {//2 queues
-    queue<int>q1;
-    queue<int>q2;
 public:
-    MyStack() {
-        
+    MyStack()
+    {
     }
-    
-    void push(int x) {
-        q2.push(x);//inserting in  q2
-        while(!q1.empty()){//if we have eles in q1 we insert them in q2
+
+    void push(int x)
+    {
+        q2.push(x); // inserting in  q2
+        while (!q1.empty())
+        { // if we have eles in q1 we insert them in q2
             q2.push(q1.front());
             q1.pop();
         }
-        swap(q1,q2);//then getting all in q1
+        swap(q1, q2); // then getting all in q1
     }
-    
-    int pop() {
-        int ans=q1.front();
+
+    int pop()
+    {
+        int ans = q1.front();
         q1.pop();
         return ans;
     }
-    
-    int top() {
+
+    int top()
+    {
         return q1.front();
     }
-    
-    bool empty() {
+
+    bool empty()
+    {
         return q1.empty();
     }
 };
 
 int main()
 {
-    
+
     return 0;
 }
