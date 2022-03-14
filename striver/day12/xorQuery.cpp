@@ -131,6 +131,7 @@ public:
                 // so that for next time we get next value
             }
             if(idx!=0){//if idx is not at 0
+            
                 ans[qIdx]=trie.findMax(num);
             }
         }
