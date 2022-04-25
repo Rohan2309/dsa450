@@ -20,7 +20,7 @@ public:
         while (!q.empty())
         {
             int cnt = q.size();//for each level the loop will run cnt times
-            vector<int> tmp;//for storing level
+            vector<int> tmp(cnt);//for storing level
             for(int i=0; i<cnt; ++i){
                 TreeNode *t = q.front();    //storing in node
                 q.pop(); //current element
