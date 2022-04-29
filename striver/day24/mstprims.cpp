@@ -18,9 +18,6 @@ int main(){
 	adj[4].push_back({2,7});
 
 //graph created
-
-	
-	
     int parent[N]; //will store parent node
       //parent[i] = -1 first, wont have a parent
     int key[N]; //will store min weights
@@ -29,7 +26,7 @@ int main(){
      //mSet[] = {false, false, false, false}
     for (int i = 0; i < N; i++) 
         key[i] = INT_MAX, mstSet[i] = false; 
-    
+    //min heap
     priority_queue< pair<int,int>, vector <pair<int,int>> , greater<pair<int,int>> > pq;
     //weight, node
     key[0] = 0; //init condition

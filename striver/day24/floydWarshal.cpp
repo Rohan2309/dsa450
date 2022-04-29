@@ -35,7 +35,7 @@ int floydWarshall(int n, int m, int src, int dest, vector<vector<int>> &edges)
 	}
 
 	// Apply Flloyd Warshall's Algorithm.
-	for (int k = 1; k <= n; k++)
+	for (int k = 1; k <= n; k++)//no of times matrix will be changed
 	{
 		for (int i = 1; i <= n; i++)
 		{

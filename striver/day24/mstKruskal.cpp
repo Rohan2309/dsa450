@@ -17,18 +17,22 @@ bool comp(node a, node b) {
 
 int findPar(int u, vector<int> &parent) {
     if(u == parent[u]) return u; 
+    //path compression
     return parent[u] = findPar(parent[u], parent); 
 }
 
 void unionn(int u, int v, vector<int> &parent, vector<int> &rank) {
+    //getting parents of both nodes
     u = findPar(u, parent);
     v = findPar(v, parent);
+    //we attach the smaller rank node to the bigger rank
     if(rank[u] < rank[v]) {
     	parent[u] = v;
     }
     else if(rank[v] < rank[u]) {
     	parent[v] = u; 
     }
+    //if they are same , choose anyone and increase it's rank
     else {
     	parent[v] = u;
     	rank[u]++; 
@@ -36,7 +40,7 @@ void unionn(int u, int v, vector<int> &parent, vector<int> &rank) {
 }
 int main(){
 	int N=5,m=6;
-	vector<node> edges; 
+	vector<node> edges; //u,v,w
 	edges.push_back(node(0,1,2));
 	edges.push_back(node(0,3,6));
 	edges.push_back(node(1,0,2));
@@ -49,20 +53,23 @@ int main(){
 	edges.push_back(node(3,1,8));
 	edges.push_back(node(4,1,5));
 	edges.push_back(node(4,2,7));
+    //sorting according to weights (ascending)
 	sort(edges.begin(), edges.end(), comp); 
 	
-	vector<int> parent(N);
-	for(int i = 0;i<N;i++) 
+	vector<int> parent(N);//parent of each node
+    //make set operation
+	for(int i = 0;i<N;i++) //every node is its own parent
 	    parent[i] = i; 
-	vector<int> rank(N, 0); 
+	vector<int> rank(N, 0); //rank will be 0 at first
 	
-	int cost = 0;
-	vector<pair<int,int>> mst; 
-	for(auto it : edges) {
+	int cost = 0;//cost for mst
+	vector<pair<int,int>> mst; //will store answer
+	for(auto it : edges) {//iterating over all edges
 	    if(findPar(it.v, parent) != findPar(it.u, parent)) {
-	        cost += it.wt; 
-	        mst.push_back({it.u, it.v}); 
-	        unionn(it.u, it.v, parent, rank); 
+            //if doesn't belong to same component we can include in mst
+	        cost += it.wt; //updating cost
+	        mst.push_back({it.u, it.v}); //storing answer
+	        unionn(it.u, it.v, parent, rank); //storing in same component
 	    }
 	}
 	cout << cost << endl;
